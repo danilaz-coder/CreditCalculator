@@ -1,4 +1,24 @@
+import me.leqada.rest.service.Calculator;
+import org.apache.log4j.Logger;
+import javax.ws.rs.ApplicationPath;
+import java.util.HashSet;
+import java.util.Set;
 
+@ApplicationPath("/")
+public class Application extends javax.ws.rs.core.Application {
+private final static Logger logger = Logger.getLogger(Application.class);
+
+public Set<Class<?>> getClasses() {
+    final Set<Class<?>> resources = new HashSet<>();
+
+    try {
+        resources.add(Calculator.class);
+    }
+    catch(Exception e) {
+        logger.error(e.getStackTrace());
+    }
+    return resources;
+}
 me.leqada.rest
 ├── Application.java
 ├── logic
